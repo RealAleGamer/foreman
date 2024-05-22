@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlwufqtkxuxoj"]
+
+[ext_resource type="Script" path="res://Scripts/dwarf.cs" id="1_rq3y2"]
+[ext_resource type="SpriteFrames" uid="uid://cvisplqjkprau" path="res://Animation/Dwarf.tres" id="2_37ulh"]
+[ext_resource type="Script" path="res://Scripts/StateMachine.cs" id="3_mwflc"]
+[ext_resource type="Script" path="res://Scripts/WanderState.cs" id="4_e6n5w"]
+[ext_resource type="Script" path="res://Scripts/IdleState.cs" id="5_80w0g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxw3r"]
+size = Vector2(11, 16)
+
+[node name="Dwarf" type="CharacterBody2D"]
+script = ExtResource("1_rq3y2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_37ulh")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_nxw3r")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("3_mwflc")
+InitalState = "Idle"
+
+[node name="WanderState" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_e6n5w")
+
+[node name="IdleState" type="Node2D" parent="StateMachine"]
+script = ExtResource("5_80w0g")

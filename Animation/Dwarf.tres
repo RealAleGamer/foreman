@@ -1,0 +1,37 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://cvisplqjkprau"]
+
+[ext_resource type="Texture2D" uid="uid://c2g0iqki63n3t" path="res://Sprites/Dwarf.png" id="1_211d6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pcy3p"]
+atlas = ExtResource("1_211d6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhdvq"]
+atlas = ExtResource("1_211d6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dopb3"]
+atlas = ExtResource("1_211d6")
+region = Rect2(16, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pcy3p")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhdvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dopb3")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 5.0
+}]
