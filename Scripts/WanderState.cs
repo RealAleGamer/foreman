@@ -9,19 +9,38 @@ public partial class WanderState : State
     private double _wanderTime;
     private bool _walkRight;
 
-    public override void Process(double delta)
+    public override void Process(double delta, StateMachine stateMachine, CharacterBody2D character)
     {
-        GD.Print("Wander State: Process");        
+        float move = (float)delta * 500;
+        var velocity = character.Velocity;
+        if (_walkRight)
+        {
+            velocity.X = move;
+        }
+        else
+        {
+            velocity.X = -move;
+        }
+
+        character.Velocity = velocity;
+
+        _wanderTime -= delta;
+
+        if (_wanderTime < 0)
+        {
+            stateMachine.SetState("Idle");
+        }
     }
 
     public override void Enter()
     {
-        base.Enter();
+        GD.Print("Wander State: Enter");        
+        SetRand();
     }
 
     public override void Exit()
     {
-        base.Exit();
+        GD.Print("Wander State: Exit");        
     }
 
     private void SetRand()

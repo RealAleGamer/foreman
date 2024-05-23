@@ -13,6 +13,7 @@ public partial class StateMachine : Node2D
 	public string InitalState { get; set; }
 	private State _currentState; 
 	private Dictionary<string, State> _stateMap;
+	private CharacterBody2D _character;
 
 	public override void _Ready()
 	{
@@ -29,15 +30,17 @@ public partial class StateMachine : Node2D
 			_stateMap.Add(state.StateName.ToLower(), state);
 		}
 
+
+		_character = GetParent<CharacterBody2D>();
 		SetState(InitalState);
 	}
 
 	public override void _Process(double delta)
 	{
-		_currentState.Process(delta);
+		_currentState.Process(delta, this, _character);
 	}
 
-	private void SetState(string stateName)
+	public void SetState(string stateName)
 	{
 		var lowerStatename = stateName.ToLower();
 
