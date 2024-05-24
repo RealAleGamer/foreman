@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace FM;
+namespace FM.Characters;
 
 public partial class Dwarf : Character
 {

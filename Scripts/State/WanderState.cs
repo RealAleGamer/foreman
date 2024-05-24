@@ -1,3 +1,4 @@
+using FM.Characters;
 using Godot;
 
 namespace FM.State;

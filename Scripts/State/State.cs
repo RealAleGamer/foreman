@@ -1,3 +1,4 @@
+using FM.Characters;
 using Godot;
 using System;
 

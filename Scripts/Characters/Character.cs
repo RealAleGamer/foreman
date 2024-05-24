@@ -1,6 +1,6 @@
 using Godot;
 
-namespace FM;
+namespace FM.Characters;
 
 public partial class Character : CharacterBody2D
 {

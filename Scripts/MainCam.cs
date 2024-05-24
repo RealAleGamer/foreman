@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace FM;
+
 public partial class MainCam : Camera2D
 {
 
