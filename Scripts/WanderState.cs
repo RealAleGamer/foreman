@@ -9,9 +9,9 @@ public partial class WanderState : State
     private double _wanderTime;
     private bool _walkRight;
 
-    public override void Process(double delta, StateMachine stateMachine, CharacterBody2D character)
+    public override void Process(double delta, StateMachine stateMachine, Character character)
     {
-        float move = (float)delta * 500;
+        float move = (float)delta * character.Speed;
         var velocity = character.Velocity;
         if (_walkRight)
         {

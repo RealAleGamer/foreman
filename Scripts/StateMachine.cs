@@ -13,7 +13,7 @@ public partial class StateMachine : Node2D
 	public string InitalState { get; set; }
 	private State _currentState; 
 	private Dictionary<string, State> _stateMap;
-	private CharacterBody2D _character;
+	private Character _character;
 
 	public override void _Ready()
 	{
@@ -31,7 +31,7 @@ public partial class StateMachine : Node2D
 		}
 
 
-		_character = GetParent<CharacterBody2D>();
+		_character = GetParent<Character>();
 		SetState(InitalState);
 	}
 

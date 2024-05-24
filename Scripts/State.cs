@@ -15,7 +15,7 @@ public partial class State : Node2D
 	{
 	}
 
-	public virtual void Process(double delta, StateMachine stateMachine, CharacterBody2D character)
+	public virtual void Process(double delta, StateMachine stateMachine, Character character)
 	{
 	}
 

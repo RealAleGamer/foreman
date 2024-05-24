@@ -8,7 +8,7 @@ public partial class IdleState : State
 
     private double _waitTime;
 
-    public override void Process(double delta, StateMachine stateMachine, CharacterBody2D character)
+    public override void Process(double delta, StateMachine stateMachine, Character character)
     {
         var vel = character.Velocity;
         vel.X = 0;

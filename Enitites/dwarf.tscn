@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dlwufqtkxuxoj"]
 
-[ext_resource type="Script" path="res://Scripts/dwarf.cs" id="1_rq3y2"]
+[ext_resource type="Script" path="res://Scripts/Dwarf.cs" id="1_rq3y2"]
 [ext_resource type="SpriteFrames" uid="uid://cvisplqjkprau" path="res://Animation/Dwarf.tres" id="2_37ulh"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.cs" id="3_mwflc"]
 [ext_resource type="Script" path="res://Scripts/WanderState.cs" id="4_e6n5w"]
@@ -11,6 +11,7 @@ size = Vector2(11, 16)
 
 [node name="Dwarf" type="CharacterBody2D"]
 script = ExtResource("1_rq3y2")
+Speed = 1000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_37ulh")
