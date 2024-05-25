@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://rdtokuyxe8gb"]
+[gd_scene load_steps=6 format=3 uid="uid://rdtokuyxe8gb"]
 
 [ext_resource type="TileSet" uid="uid://enaekhqyhmr2" path="res://Sprites/Tiles.tres" id="1_uloqj"]
 [ext_resource type="PackedScene" uid="uid://dlwufqtkxuxoj" path="res://Enitites/Characters/dwarf.tscn" id="2_tt070"]
 [ext_resource type="Script" path="res://Scripts/MainCam.cs" id="3_1komr"]
 [ext_resource type="PackedScene" uid="uid://cehcbdlf8kl2b" path="res://Enitites/Buildings/forge.tscn" id="4_sr8y5"]
+[ext_resource type="Script" path="res://Scripts/NavGraph.cs" id="5_kknc5"]
 
 [node name="Map" type="Node2D"]
 
@@ -30,3 +31,9 @@ Speed = 1.0
 
 [node name="Forge" parent="." instance=ExtResource("4_sr8y5")]
 position = Vector2(383, 544)
+
+[node name="NavGraph" type="Node2D" parent="." node_paths=PackedStringArray("tileMap")]
+script = ExtResource("5_kknc5")
+tileMap = NodePath("../TileMap")
+tileSize = 16
+bounds = Rect2(0, 0, 2000, 2000)
