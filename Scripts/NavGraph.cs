@@ -7,17 +7,18 @@ public partial class NavGraph : Node2D
 	public TileMap tileMap;
 
 	[Export]
-	public int tileSize;
-	
-	[Export]
 	public Rect2 bounds;
 
+	private int tileSize;
 	private AStar2D pathing;
 	private long pointsEnd;
 
 	public override void _Ready()
 	{
 		pathing = new AStar2D();
+
+		tileSize = tileMap.TileSet.TileSize.X;
+		var halfTile = tileSize / 2;
 
 		var xMax = (int)(bounds.Position.X + bounds.Size.X)/tileSize;
 		var xMin = (int)bounds.Position.X/tileSize;
@@ -29,7 +30,7 @@ public partial class NavGraph : Node2D
 		{
 			for (int y = yMin; y <= yMax; ++y)
 			{
-				pathing.AddPoint(id, new Vector2(x * tileSize, y * tileSize));
+				pathing.AddPoint(id, new Vector2(x * tileSize + halfTile, y * tileSize + halfTile));
 				//GD.Print($"Added Point at: {x}, {y}");
 				++id;
 			}
@@ -43,14 +44,22 @@ public partial class NavGraph : Node2D
 		{
 			var pos = pathing.GetPointPosition(i);
 
-			var result = tileMap.GetCellTileData(3, new Vector2I((int)pos.X / tileSize, (int)pos.Y / tileSize), false);
-			if (result == null)
+			var space = tileMap.GetCellTileData(3, new Vector2I((int)pos.X / tileSize, (int)pos.Y / tileSize), false);
+			if (space == null)
 			{
-				DrawCircle(pos, 2, new Color(1, 0, 0));
+				var ground = tileMap.GetCellTileData(3, new Vector2I((int)pos.X / tileSize, 1 + (int)pos.Y / tileSize), false);
+				if (ground == null)
+				{
+					DrawCircle(pos, 2, new Color(0, 1, 1));
+				}
+				else
+				{
+					DrawCircle(pos, 2, new Color(0, 1, 0));
+				}
 			}
 			else
 			{
-				DrawCircle(pos, 2, new Color(0, 1, 1));
+				DrawCircle(pos, 2, new Color(1, 0, 0));
 			}
 		} 
     }
