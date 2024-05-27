@@ -35,4 +35,4 @@ position = Vector2(383, 544)
 [node name="NavGraph" type="Node2D" parent="." node_paths=PackedStringArray("tileMap")]
 script = ExtResource("5_kknc5")
 tileMap = NodePath("../TileMap")
-bounds = Rect2(0, 0, 2000, 2000)
+bounds = Rect2i(0, 0, 1000, 1000)
