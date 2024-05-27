@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class NavGraph : Node2D
 {
@@ -36,9 +37,34 @@ public partial class NavGraph : Node2D
 				}
 			}
 		}
+
+		var ids = pathing.GetPointIds();
+		foreach (var id in ids)
+		{
+			var coord = GetCoordFromId(id);
+			
+			for (int x = -1; x <= 1; ++x)
+			{
+				for (int y = -1; y <= 1; ++y)
+				{
+					if (x == 0 && y == 0) continue;
+
+					var neighborId = GetId(coord.X + x, coord.Y + y);
+					if (ids.Contains(neighborId))
+					{
+						pathing.ConnectPoints(id, neighborId);
+					}
+				}
+			}
+		}
 	}
 
-    public override void _Draw()
+	public Vector2[] GetPath(Vector2 start, Vector2 end)
+	{
+		return pathing.GetPointPath(pathing.GetClosestPoint(start), pathing.GetClosestPoint(end));
+	}
+
+/*     public override void _Draw()
     {
 		foreach (var id in pathing.GetPointIds())
 		{
@@ -61,9 +87,15 @@ public partial class NavGraph : Node2D
 			{
 				DrawCircle(pos, 2, new Color(1, 0, 0));
 			}
+
+			foreach (var connection in pathing.GetPointConnections(id))
+			{
+				var endPos = pathing.GetPointPosition(connection);
+				DrawLine(pos, endPos, new Color(1,0,0));
+			}
 		} 
     }
-	
+	 */
 	private bool IsGroundPoint(int x, int y)
 	{
 		var space = tileMap.GetCellTileData(3, new Vector2I(x, y), false);
