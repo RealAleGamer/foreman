@@ -32,19 +32,5 @@ public partial class Dwarf : Character
 		}
 
 		MoveAndSlide();
-
-		QueueRedraw();
 	}
-
-    public override void _Draw()
-    {
-		var targetPos = new Vector2(383, 544);
-		var path = navGraph.GetPath(Position, targetPos);
-
-		GD.Print("Redraw");
-		foreach (var node in path)
-		{
-			DrawCircle(node - Position, 2, new Color(0, 0, 1));
-		}
-    }
 }

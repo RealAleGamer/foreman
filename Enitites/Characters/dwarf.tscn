@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlwufqtkxuxoj"]
+[gd_scene load_steps=8 format=3 uid="uid://dlwufqtkxuxoj"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Dwarf.cs" id="1_jw5f4"]
 [ext_resource type="SpriteFrames" uid="uid://cvisplqjkprau" path="res://Animation/Dwarf.tres" id="2_37ulh"]
 [ext_resource type="Script" path="res://Scripts/State/StateMachine.cs" id="3_mwflc"]
 [ext_resource type="Script" path="res://Scripts/State/WanderState.cs" id="4_e6n5w"]
 [ext_resource type="Script" path="res://Scripts/State/IdleState.cs" id="5_80w0g"]
+[ext_resource type="Script" path="res://Scripts/State/TravelState.cs" id="6_r1ims"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxw3r"]
 size = Vector2(11, 16)
@@ -30,3 +31,6 @@ script = ExtResource("4_e6n5w")
 
 [node name="IdleState" type="Node2D" parent="StateMachine"]
 script = ExtResource("5_80w0g")
+
+[node name="TravelState" type="Node2D" parent="StateMachine"]
+script = ExtResource("6_r1ims")
