@@ -20,17 +20,6 @@ public partial class Dwarf : Character
 
 		Velocity = velocity;
 
-		var animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		if (IsOnFloor() && Velocity.X != 0)
-		{
-			animatedSprite.Play("Walking");
-			animatedSprite.FlipH = Velocity.X < 0;
-		}
-		else
-		{
-			animatedSprite.Play("Idle");
-		}
-
 		MoveAndSlide();
 	}
 }

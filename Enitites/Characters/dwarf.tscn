@@ -16,7 +16,7 @@ Speed = 1000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_37ulh")
-animation = &"Idle"
+animation = &"Climb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
@@ -34,3 +34,4 @@ script = ExtResource("5_80w0g")
 
 [node name="TravelState" type="Node2D" parent="StateMachine"]
 script = ExtResource("6_r1ims")
+target = Vector2(383, 544)

@@ -1,6 +1,39 @@
-[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://cvisplqjkprau"]
+[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://cvisplqjkprau"]
 
 [ext_resource type="Texture2D" uid="uid://c2g0iqki63n3t" path="res://Sprites/Dwarf.png" id="1_211d6"]
+[ext_resource type="Texture2D" uid="uid://wchuofw101ia" path="res://Sprites/DwarfClimb.png" id="1_jikgk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf8f8"]
+atlas = ExtResource("1_jikgk")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kohee"]
+atlas = ExtResource("1_jikgk")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6ymn"]
+atlas = ExtResource("1_jikgk")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hleh5"]
+atlas = ExtResource("1_jikgk")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nta2"]
+atlas = ExtResource("1_jikgk")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2xot"]
+atlas = ExtResource("1_jikgk")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3jk4"]
+atlas = ExtResource("1_jikgk")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40hxk"]
+atlas = ExtResource("1_jikgk")
+region = Rect2(336, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pcy3p"]
 atlas = ExtResource("1_211d6")
@@ -18,11 +51,40 @@ region = Rect2(16, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jf8f8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kohee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6ymn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hleh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nta2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2xot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3jk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40hxk")
+}],
+"loop": true,
+"name": &"Climb",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pcy3p")
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -33,5 +95,5 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walking",
-"speed": 5.0
+"speed": 4.0
 }]

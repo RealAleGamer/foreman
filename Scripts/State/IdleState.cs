@@ -11,15 +11,13 @@ public partial class IdleState : State
 
     public override void Process(double delta, StateMachine stateMachine, Character character)
     {
-        var vel = character.Velocity;
-        vel.X = 0;
-        character.Velocity = vel;
+        character.Stop();
 
         _waitTime -= delta;
 
         if (_waitTime < 0)
         {
-           stateMachine.SetState("Wander");
+           stateMachine.SetState("Travel");
         }
     }
 

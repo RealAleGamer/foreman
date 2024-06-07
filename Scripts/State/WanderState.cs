@@ -12,18 +12,7 @@ public partial class WanderState : State
 
     public override void Process(double delta, StateMachine stateMachine, Character character)
     {
-        float move = (float)delta * character.Speed;
-        var velocity = character.Velocity;
-        if (_walkRight)
-        {
-            velocity.X = move;
-        }
-        else
-        {
-            velocity.X = -move;
-        }
-
-        character.Velocity = velocity;
+        character.Walk(_walkRight ? Direction.Right : Direction.Left);
 
         _wanderTime -= delta;
 

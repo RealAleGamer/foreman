@@ -22,7 +22,7 @@ layer_3/tile_data = PackedInt32Array(2293760, 0, 1, 2359296, 0, 2, 2424832, 0, 3
 
 [node name="Dwarf" parent="." node_paths=PackedStringArray("navGraph") instance=ExtResource("2_tt070")]
 position = Vector2(100, 500)
-Speed = 2000.0
+Speed = 16.0
 navGraph = NodePath("../NavGraph")
 
 [node name="MainCam" type="Camera2D" parent="."]
