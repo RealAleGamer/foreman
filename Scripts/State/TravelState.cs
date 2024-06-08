@@ -69,7 +69,7 @@ public partial class TravelState : State
         }
         else if (nextWaypoint.Y < GlobalPosition.Y)
         {
-            actionTime = 2;
+            actionTime = 1.9;
             if (nextWaypoint.X > GlobalPosition.X)
             {
                 // Walk Right
@@ -81,15 +81,17 @@ public partial class TravelState : State
                 // Walk Left
                 character.Climb(Direction.Left);
             }
+
+            character.Position = nextWaypoint;
         }
         QueueRedraw();
     }
 
     public override void _Draw()
     {
-        if (route != null && route.Length > nextWaypointIndex)
-        {
-            DrawCircle(route[nextWaypointIndex] - GlobalPosition, 2f, new Color(1, 0, 0));
-        }
+        //if (route != null && route.Length > nextWaypointIndex)
+        //{
+        //    DrawCircle(route[nextWaypointIndex] - GlobalPosition, 2f, new Color(1, 0, 0));
+        //}
     }
 }

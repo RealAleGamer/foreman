@@ -38,6 +38,9 @@ public partial class Character : CharacterBody2D
 
     public void Climb(Direction direction)
     {
+        var vel = Velocity;
+        vel.X = 0;
+        Velocity = vel;
         GetAnimatedSprite2D().Play("Climb");
         GetAnimatedSprite2D().FlipH = direction == Direction.Left;
     }
