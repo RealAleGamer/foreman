@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=14 format=3 uid="uid://cvisplqjkprau"]
+[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://cvisplqjkprau"]
 
 [ext_resource type="Texture2D" uid="uid://c2g0iqki63n3t" path="res://Sprites/Dwarf.png" id="1_211d6"]
 [ext_resource type="Texture2D" uid="uid://wchuofw101ia" path="res://Sprites/DwarfClimb.png" id="1_jikgk"]
@@ -39,13 +39,21 @@ region = Rect2(336, 0, 48, 48)
 atlas = ExtResource("1_211d6")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lhdvq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e6ww"]
 atlas = ExtResource("1_211d6")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(0, 0, 48, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dopb3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr5cw"]
 atlas = ExtResource("1_211d6")
-region = Rect2(16, 0, 16, 16)
+region = Rect2(48, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m35xt"]
+atlas = ExtResource("1_211d6")
+region = Rect2(96, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi4hi"]
+atlas = ExtResource("1_211d6")
+region = Rect2(144, 0, 48, 16)
 
 [resource]
 animations = [{
@@ -74,7 +82,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_40hxk")
 }],
-"loop": true,
+"loop": false,
 "name": &"Climb",
 "speed": 4.0
 }, {
@@ -88,12 +96,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lhdvq")
+"texture": SubResource("AtlasTexture_0e6ww")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dopb3")
+"texture": SubResource("AtlasTexture_nr5cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m35xt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi4hi")
 }],
-"loop": true,
+"loop": false,
 "name": &"Walking",
 "speed": 4.0
 }]

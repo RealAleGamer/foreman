@@ -4,45 +4,42 @@ using Godot;
 
 namespace FM.Characters;
 
-public enum Direction
-{
-    Right,
-    Left,
-}
 
 public partial class Character : CharacterBody2D
 {
     [Export]
-	public float Speed = 100.0f;
-
-    [Export]
     public NavGraph navGraph;
 
+    public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
-    public void Walk(Direction direction)
+    public override void _Ready()
     {
-        var vel = Velocity;
-        vel.X = Speed * (direction == Direction.Left ? -1 : 1);
-        Velocity = vel;
-        GetAnimatedSprite2D().Play("Walking");
-        GetAnimatedSprite2D().FlipH = direction == Direction.Left;
+        Position = Position - new Vector2(Position.X % 16, 0);
+    }
+    public override void _PhysicsProcess(double delta)
+	{
+        if (!IsOnFloor())
+        {
+            Velocity = new Vector2(0, gravity * (float)delta);
+            MoveAndSlide();
+        }
+	}
+
+    public double Move(Vector2 newPos)
+    {
+        var left = newPos.X < GlobalPosition.X;
+        var climb = newPos.Y < GlobalPosition.Y;
+
+        GlobalPosition = newPos;
+        GetAnimatedSprite2D().Play(climb ? "Climb" : "Walking");
+        GetAnimatedSprite2D().FlipH = left;
+        return climb ? 2.0 : 1.0;
     }
 
-    public void Stop()
+    public double Stop()
     {
-        var vel = Velocity;
-        vel.X = 0;
-        Velocity = vel;
         GetAnimatedSprite2D().Play("Idle");
-    }
-
-    public void Climb(Direction direction)
-    {
-        var vel = Velocity;
-        vel.X = 0;
-        Velocity = vel;
-        GetAnimatedSprite2D().Play("Climb");
-        GetAnimatedSprite2D().FlipH = direction == Direction.Left;
+        return 0.0;
     }
 
     private AnimatedSprite2D GetAnimatedSprite2D()

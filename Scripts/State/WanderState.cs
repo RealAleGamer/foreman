@@ -12,7 +12,8 @@ public partial class WanderState : State
 
     public override void Process(double delta, StateMachine stateMachine, Character character)
     {
-        character.Walk(_walkRight ? Direction.Right : Direction.Left);
+        // TODO: I know this is wrong
+        character.Move(GlobalPosition + new Vector2(16, 0));
 
         _wanderTime -= delta;
 

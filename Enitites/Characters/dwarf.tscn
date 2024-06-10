@@ -12,7 +12,6 @@ size = Vector2(11, 16)
 
 [node name="Dwarf" type="CharacterBody2D"]
 script = ExtResource("1_jw5f4")
-Speed = 1000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_37ulh")

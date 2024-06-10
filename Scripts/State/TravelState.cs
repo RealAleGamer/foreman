@@ -44,47 +44,14 @@ public partial class TravelState : State
         
         var nextWaypoint = route[nextWaypointIndex];
 
-        if (Math.Abs(nextWaypoint.Y - GlobalPosition.Y) < 1)
+        actionTime = character.Move(nextWaypoint);
+
+        nextWaypointIndex++;
+        if (nextWaypointIndex >= route.Length)
         {
-            if (nextWaypoint.X > GlobalPosition.X)
-            {
-                // Walk Right
-                character.Walk(Direction.Right);
-            }
-
-            if (nextWaypoint.X < GlobalPosition.X)
-            {
-                // Walk Left
-                character.Walk(Direction.Left);
-            }
-
-            if ((nextWaypoint - GlobalPosition).LengthSquared() < 1)
-            {
-                nextWaypointIndex++;
-                if (nextWaypointIndex >= route.Length)
-                {
-                    stateMachine.SetState("Idle");
-                }
-            }
+            stateMachine.SetState("Idle");
         }
-        else if (nextWaypoint.Y < GlobalPosition.Y)
-        {
-            actionTime = 1.9;
-            if (nextWaypoint.X > GlobalPosition.X)
-            {
-                // Walk Right
-                character.Climb(Direction.Right);
-            }
-
-            if (nextWaypoint.X < GlobalPosition.X)
-            {
-                // Walk Left
-                character.Climb(Direction.Left);
-            }
-
-            character.Position = nextWaypoint;
-        }
-        QueueRedraw();
+       // QueueRedraw();
     }
 
     public override void _Draw()
