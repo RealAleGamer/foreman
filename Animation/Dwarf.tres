@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://cvisplqjkprau"]
+[gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://cvisplqjkprau"]
 
 [ext_resource type="Texture2D" uid="uid://c2g0iqki63n3t" path="res://Sprites/Dwarf.png" id="1_211d6"]
 [ext_resource type="Texture2D" uid="uid://wchuofw101ia" path="res://Sprites/DwarfClimb.png" id="1_jikgk"]
@@ -35,25 +35,41 @@ region = Rect2(288, 0, 48, 48)
 atlas = ExtResource("1_jikgk")
 region = Rect2(336, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pcy3p"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mip4d"]
 atlas = ExtResource("1_211d6")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(336, 0, 48, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0e6ww"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuq7d"]
 atlas = ExtResource("1_211d6")
-region = Rect2(0, 0, 48, 16)
+region = Rect2(0, 16, 48, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nr5cw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lajaa"]
 atlas = ExtResource("1_211d6")
-region = Rect2(48, 0, 48, 16)
+region = Rect2(48, 16, 48, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m35xt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_574a5"]
 atlas = ExtResource("1_211d6")
-region = Rect2(96, 0, 48, 16)
+region = Rect2(96, 16, 48, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wi4hi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qme3d"]
 atlas = ExtResource("1_211d6")
-region = Rect2(144, 0, 48, 16)
+region = Rect2(144, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32ods"]
+atlas = ExtResource("1_211d6")
+region = Rect2(192, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ip06v"]
+atlas = ExtResource("1_211d6")
+region = Rect2(240, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4ck3"]
+atlas = ExtResource("1_211d6")
+region = Rect2(288, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thr36"]
+atlas = ExtResource("1_211d6")
+region = Rect2(336, 16, 48, 16)
 
 [resource]
 animations = [{
@@ -88,7 +104,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pcy3p")
+"texture": SubResource("AtlasTexture_mip4d")
 }],
 "loop": true,
 "name": &"Idle",
@@ -96,18 +112,30 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0e6ww")
+"texture": SubResource("AtlasTexture_vuq7d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nr5cw")
+"texture": SubResource("AtlasTexture_lajaa")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m35xt")
+"texture": SubResource("AtlasTexture_574a5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wi4hi")
+"texture": SubResource("AtlasTexture_qme3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32ods")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ip06v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4ck3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thr36")
 }],
 "loop": false,
 "name": &"Walking",
-"speed": 4.0
+"speed": 8.0
 }]
