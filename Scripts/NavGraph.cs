@@ -5,10 +5,16 @@ using System.Linq;
 public partial class NavGraph : Node2D
 {
 	[Export]
-	public TileMap tileMap;
+	public TileMapLayer tileMapGround;
+
+	[Export]
+	public TileMapLayer tileMapClimbable;
 
 	[Export]
 	public Rect2I bounds;
+
+	[Export]
+	public bool drawDebug = false;
 
 	private int tileSize;
 	private int halfTile;
@@ -19,7 +25,7 @@ public partial class NavGraph : Node2D
 	{
 		pathing = new AStar2D();
 
-		tileSize = tileMap.TileSet.TileSize.X;
+		tileSize = tileMapGround.TileSet.TileSize.X;
 		halfTile = tileSize / 2;
 
 		var xMax = (int)(bounds.Position.X + bounds.Size.X)/tileSize;
@@ -32,6 +38,10 @@ public partial class NavGraph : Node2D
 			for (int y = yMin; y <= yMax; ++y)
 			{
 				if (IsGroundPoint(x, y))
+				{
+					pathing.AddPoint(GetId(x, y), new Vector2(x * tileSize + halfTile, y * tileSize + halfTile));
+				}
+				else if (IsClimbable(x, y))
 				{
 					pathing.AddPoint(GetId(x, y), new Vector2(x * tileSize + halfTile, y * tileSize + halfTile));
 				}
@@ -64,47 +74,58 @@ public partial class NavGraph : Node2D
 		return pathing.GetPointPath(pathing.GetClosestPoint(start), pathing.GetClosestPoint(end));
 	}
 
-/*     public override void _Draw()
+    public override void _Draw()
     {
-		foreach (var id in pathing.GetPointIds())
+		if (!drawDebug)
 		{
-			var pos = pathing.GetPointPosition(id);
+			return;
+		}
 
-			var space = tileMap.GetCellTileData(3, new Vector2I((int)pos.X / tileSize, (int)pos.Y / tileSize), false);
-			if (space == null)
+		foreach (var id in pathing.GetPointIds())
 			{
-				var ground = tileMap.GetCellTileData(3, new Vector2I((int)pos.X / tileSize, 1 + (int)pos.Y / tileSize), false);
-				if (ground == null)
+				var pos = pathing.GetPointPosition(id);
+
+				var space = tileMapGround.GetCellTileData(new Vector2I((int)pos.X / tileSize, (int)pos.Y / tileSize));
+				if (space == null)
 				{
-					DrawCircle(pos, 2, new Color(0, 1, 1));
+					var ground = tileMapGround.GetCellTileData(new Vector2I((int)pos.X / tileSize, 1 + (int)pos.Y / tileSize));
+					if (ground == null)
+					{
+						DrawCircle(pos, 2, new Color(0, 1, 1));
+					}
+					else
+					{
+						DrawCircle(pos, 2, new Color(0, 1, 0));
+					}
 				}
 				else
 				{
-					DrawCircle(pos, 2, new Color(0, 1, 0));
+					DrawCircle(pos, 2, new Color(1, 0, 0));
 				}
-			}
-			else
-			{
-				DrawCircle(pos, 2, new Color(1, 0, 0));
-			}
 
-			foreach (var connection in pathing.GetPointConnections(id))
-			{
-				var endPos = pathing.GetPointPosition(connection);
-				DrawLine(pos, endPos, new Color(1,0,0));
-			}
-		} 
+				foreach (var connection in pathing.GetPointConnections(id))
+				{
+					var endPos = pathing.GetPointPosition(connection);
+					DrawLine(pos, endPos, new Color(1, 0, 0));
+				}
+			} 
     }
-	 */
+	 
 	private bool IsGroundPoint(int x, int y)
 	{
-		var space = tileMap.GetCellTileData(3, new Vector2I(x, y), false);
+		var space = tileMapGround.GetCellTileData(new Vector2I(x, y));
 		if (space == null)
 		{
-			var ground = tileMap.GetCellTileData(3, new Vector2I(x, 1 + y), false);
+			var ground = tileMapGround.GetCellTileData(new Vector2I(x, 1 + y));
 			return ground != null;
 		}
 		return false;
+	}
+
+	private bool IsClimbable(int x, int y)
+	{
+		var lader = tileMapClimbable.GetCellTileData(new Vector2I(x, y));
+		return lader != null;
 	}
 	
 	private long GetId(int x, int y)

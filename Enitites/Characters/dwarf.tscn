@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://dlwufqtkxuxoj"]
 
-[ext_resource type="Script" path="res://Scripts/Characters/Dwarf.cs" id="1_jw5f4"]
+[ext_resource type="Script" uid="uid://dagbw3655j4a4" path="res://Scripts/Characters/Dwarf.cs" id="1_jw5f4"]
 [ext_resource type="SpriteFrames" uid="uid://cvisplqjkprau" path="res://Animation/Dwarf.tres" id="2_37ulh"]
-[ext_resource type="Script" path="res://Scripts/State/StateMachine.cs" id="3_mwflc"]
-[ext_resource type="Script" path="res://Scripts/State/WanderState.cs" id="4_e6n5w"]
-[ext_resource type="Script" path="res://Scripts/State/IdleState.cs" id="5_80w0g"]
-[ext_resource type="Script" path="res://Scripts/State/TravelState.cs" id="6_r1ims"]
+[ext_resource type="Script" uid="uid://b86ql2soqvn4q" path="res://Scripts/State/StateMachine.cs" id="3_mwflc"]
+[ext_resource type="Script" uid="uid://61wuhjuayyqq" path="res://Scripts/State/WanderState.cs" id="4_e6n5w"]
+[ext_resource type="Script" uid="uid://obipfjemq0yv" path="res://Scripts/State/IdleState.cs" id="5_80w0g"]
+[ext_resource type="Script" uid="uid://ir70oia8myvf" path="res://Scripts/State/TravelState.cs" id="6_r1ims"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxw3r"]
 size = Vector2(11, 16)
@@ -15,7 +15,7 @@ script = ExtResource("1_jw5f4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_37ulh")
-animation = &"Idle"
+animation = &"Climb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
@@ -33,4 +33,4 @@ script = ExtResource("5_80w0g")
 
 [node name="TravelState" type="Node2D" parent="StateMachine"]
 script = ExtResource("6_r1ims")
-target = Vector2(383, 544)
+target = Vector2(383, 464)
