@@ -10,6 +10,9 @@ public partial class Character : CharacterBody2D
     [Export]
     public NavGraph navGraph;
 
+    bool delayMove = false;
+    Vector2 delayedMovePos;
+
     public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
     public override void _Ready()
@@ -25,16 +28,73 @@ public partial class Character : CharacterBody2D
         }
 	}
 
+    [Flags]
+    enum Direction
+    {
+        None = 0,
+        Up = 1,
+        Down = 2,
+        Left = 4,
+        Right = 8
+    }
+
     public double Move(Vector2 newPos)
     {
-        var left = newPos.X < GlobalPosition.X;
-        var climb = newPos.Y < GlobalPosition.Y;
+        if (delayMove)
+        {
+            delayMove = false;
+            GlobalPosition = delayedMovePos;
+        }
 
-        GlobalPosition = newPos;
-        GetAnimatedSprite2D().Play(climb ? "Climb" : "Walking");
-        GetAnimatedSprite2D().FlipH = left;
-        return climb ? 2.0 : 1.0;
+        var direction = Direction.None;
+        if (newPos.X < GlobalPosition.X) direction |= Direction.Left;
+        if (newPos.X > GlobalPosition.X) direction |= Direction.Right;
+        if (newPos.Y < GlobalPosition.Y) direction |= Direction.Up;
+        if (newPos.Y > GlobalPosition.Y) direction |= Direction.Down;
+
+        var sprite = GetAnimatedSprite2D();
+
+        sprite.FlipH = (direction & Direction.Left) != Direction.None;
+
+        bool playBackwards = false;
+        string animation;
+        double runtime;
+        if (((direction & Direction.Up) | (direction & Direction.Down)) == Direction.None)
+        {
+            animation = "Walking";
+            runtime = 1.0;
+        }
+        else if (((direction & Direction.Left) | (direction & Direction.Right)) == Direction.None)
+        {
+            runtime = 2.0;
+            animation = "Idle";
+        }
+        else
+        {
+            animation = "Climb";
+            runtime = 2.0;
+            if ((direction & Direction.Down) != Direction.None)
+            {
+                playBackwards = true;
+            }
+        }
+
+        if (playBackwards)
+        {
+            sprite.PlayBackwards(animation);
+            delayedMovePos = newPos;
+            delayMove = true;
+            sprite.FlipH = !sprite.FlipH;
+        }
+        else
+        {
+            sprite.Play(animation);
+            GlobalPosition = newPos;
+        }
+
+        return runtime;
     }
+
 
     public double Stop()
     {

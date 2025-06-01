@@ -25,7 +25,12 @@ public partial class TravelState : State
         }
 
         route = navGraph.GetPath(GlobalPosition, target);
-        nextWaypointIndex = 0; // TODO: In some cases this should be 1 if we are already on the right side of the first point.
+
+        if (route.Length > 1 && GlobalPosition.DistanceTo(route[1]) < route[0].DistanceTo(route[1]))
+            nextWaypointIndex = 1;
+        else
+            nextWaypointIndex = 0;
+
         GD.Print("Entered Travel State");
 	} 
 
