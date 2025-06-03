@@ -95,6 +95,11 @@ public partial class NavGraph : Node2D
 		return pathing.GetPointPath(pathing.GetClosestPoint(start), pathing.GetClosestPoint(end));
 	}
 
+	public Vector2 FindNearestPosition(Vector2 pos)
+	{
+		return new Vector2((int)pos.X, (int)pos.Y);
+	}
+
 	public override void _Draw()
 	{
 		if (!drawDebug)

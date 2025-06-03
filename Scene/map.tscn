@@ -30,7 +30,7 @@ tile_map_data = PackedByteArray("AAAAACMAAAAAAAEAAAAAACQAAAAAAAIAAAAAACUAAAAAAAM
 tile_set = ExtResource("1_uloqj")
 
 [node name="Climbable" type="TileMapLayer" parent="TileMap"]
-tile_map_data = PackedByteArray("AAAUACIAAAAFAAUAAAAUACEAAAAFAAUAAAAUACAAAAAFAAUAAAAUAB8AAAAFAAUAAAAUAB4AAAAFAAUAAAAZACAAAAAFAAUAAAAZAB8AAAAFAAUAAAAZAB4AAAAFAAUAAAA=")
+tile_map_data = PackedByteArray("AAAUACIAAAAFAAUAAAAUACEAAAAFAAUAAAAUACAAAAAFAAUAAAAUAB8AAAAFAAUAAAAUAB4AAAAFAAUAAAA=")
 tile_set = ExtResource("1_uloqj")
 
 [node name="Dwarf" parent="." node_paths=PackedStringArray("navGraph") instance=ExtResource("2_tt070")]
@@ -50,7 +50,6 @@ script = ExtResource("5_kknc5")
 tileMapGround = NodePath("../TileMap/Terain")
 tileMapClimbable = NodePath("../TileMap/Climbable")
 bounds = Rect2i(0, 0, 1000, 1000)
-drawDebug = true
 
 [node name="Dwarf2" parent="." node_paths=PackedStringArray("navGraph") instance=ExtResource("2_tt070")]
 position = Vector2(51, 533)

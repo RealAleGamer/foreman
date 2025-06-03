@@ -17,16 +17,16 @@ public partial class Character : CharacterBody2D
 
     public override void _Ready()
     {
-        Position = Position - new Vector2(Position.X % 16, 0);
+        Position = navGraph.FindNearestPosition(GlobalPosition);
     }
     public override void _PhysicsProcess(double delta)
-	{
+    {
         if (!IsOnFloor())
         {
             Velocity = new Vector2(0, gravity * (float)delta);
             MoveAndSlide();
         }
-	}
+    }
 
     [Flags]
     enum Direction
